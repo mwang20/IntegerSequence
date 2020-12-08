@@ -4,25 +4,28 @@ public class Range implements IntegerSequence{
   private int start,end,current;
   ArrayList<Integer> rList = new ArrayList<Integer>();
   public Range(int start,  int end){
-    for (int i = 0; i < (end - start); i++){
-      current = i + start;
-      rList.add(i + end);
-    }
+    this.start = start;
+    this.end = end;
+    this.current = start;
   }
   public void reset(){
     current = start;
   }
   public int length(){
-    return rList.size();
+    return end - start;
   }
   public int next() throws NoSuchElementException{
-    if (rList.get(current - start + 1) == null){
+    if (current + 1 > end){
+      current += 1;
       throw new NoSuchElementException("No next value; out of bounds");
     }
-    else return rList.get(current - start + 1);
+    else {
+      current += 1;
+      return current;
+    }
   }
   public boolean hasNext(){
-    if (rList.get(current - start + 1) != null){
+    if (next() <= end){
       return true;
     }
     else return false;
