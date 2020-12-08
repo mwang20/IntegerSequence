@@ -15,4 +15,7 @@ public class Range implements IntegerSequence{
   public int length(){
     return rList.size();
   }
+  public int next() throws NoSuchElementException{
+    return rList.get(current - start + 1);
+  }
 }
