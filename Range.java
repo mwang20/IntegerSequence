@@ -9,4 +9,7 @@ public class Range implements IntegerSequence{
       rList.add(i + end);
     }
   }
+  public void reset(){
+    current = start;
+  }
 }
