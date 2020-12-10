@@ -1,6 +1,6 @@
 import java.util.NoSuchElementException;
 public class Range implements IntegerSequence{
-  private int start,end,current;
+  public int start,end,current;
   public Range(int start,  int end){
     if (end < start){
       throw new NoSuchElementException();
@@ -17,20 +17,19 @@ public class Range implements IntegerSequence{
   public int length(){
     return (end - start) + 1;
   }
+  public boolean hasNext(){
+    if (current > end){
+      return false;
+    }
+    return true;
+  }
   public int next(){
-    if (current + 1 > end){
-      current += 1;
+    if (hasNext() == false){
       throw new NoSuchElementException();
     }
-    else {
-      current += 1;
-      return current;
-    }
-  }
-  public boolean hasNext(){
-    if (next() <= end){
-      return true;
-    }
-    else return false;
+
+    int rtn = current;
+    current += 1;
+    return rtn;
   }
 }
