@@ -1,6 +1,5 @@
 import java.util.NoSuchElementException;
 public class ArraySequence implements IntegerSequence{
-  public int start,end,current;
   private int currentIndex;
   private int []data;
   public ArraySequence(int [] other){
@@ -8,18 +7,24 @@ public class ArraySequence implements IntegerSequence{
     for (int i = 0; i < other.length; i++){
       data[i] = other[i];
     }
-    start = 0;
-    end = data.length - 1;
-    current = 0;
+    currentIndex = 0;
+  }
+  public ArraySequence(IntegerSequence otherseq){
+    data = new int[otherseq.length()];
+    for (int i = 0; i < otherseq.length(); i++){
+      data[i] = otherseq.next();
+    }
+    otherseq.reset();
+    currentIndex = 0;
   }
   public void reset(){
-    current = start;
+    currentIndex = 0;
   }
   public int length(){
-    return (end - start) + 1;
+    return data.length;
   }
   public boolean hasNext(){
-    if (current > end){
+    if (currentIndex > length() - 1){
       return false;
     }
     return true;
@@ -28,9 +33,8 @@ public class ArraySequence implements IntegerSequence{
     if (hasNext() == false){
       throw new NoSuchElementException();
     }
-
-    int rtn = data[current];
-    current += 1;
+    int rtn = data[currentIndex];
+    currentIndex += 1;
     return rtn;
   }
 }

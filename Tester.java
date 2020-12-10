@@ -10,7 +10,7 @@ public class Tester {
 		failure = failure || lengthTester(1000);
 		failure = failure || hasNextTester(1000);
 		failure = failure || resetTester(1000);
-	//	failure = failure || integerSequenceConstructor(1000);
+	  failure = failure || integerSequenceConstructor(1000);
 
 		System.out.println("\n ~~~ Overall Result ~~~");
 		if (failure) {
@@ -271,7 +271,6 @@ public class Tester {
 		methodMessage("resetTester", fail);
 		return fail;
 	}
-/*
 	public static boolean integerSequenceConstructor(int tests) {
 		tester("integerSequenceConstructor");
 		System.out.println("This test assumes your range function is working properly.");
@@ -307,5 +306,4 @@ public class Tester {
 		methodMessage("integerSequenceConstructor", fail);
 		return fail;
 	}
-	*/
 }
